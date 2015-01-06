@@ -60,7 +60,7 @@
         android:layout_alignTop="@+id/airConditionerWarmButton"
         android:layout_toLeftOf="@+id/airConditionerWarmButton"
         android:layout_toStartOf="@+id/airConditionerWarmButton"
-        android:onClick="airConditionerColdButtonClick"/>
+        android:onClick="airConditionerFreezeButtonClick"/>
 
     <TextView
         android:layout_width="wrap_content"

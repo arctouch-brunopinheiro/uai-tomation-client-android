@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.android.volley.Response;
 
@@ -31,11 +32,13 @@ public class HomeControlActivity extends ActionBarActivity {
         airConditionerStateSwitch = (Switch) findViewById(R.id.airConditionerStateSwitch);
         airConditionerWarmButton = (Button) findViewById(R.id.airConditionerWarmButton);
         airConditionerColdButton = (Button) findViewById(R.id.airConditionerColdButton);
-
-        arduinoService = ArduinoService.instance(this, this.serverAddress.getText().toString());
-
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        arduinoService = ArduinoService.instance(this, this.serverAddress.getText().toString());
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,7 +72,7 @@ public class HomeControlActivity extends ActionBarActivity {
         });
     }
 
-    public void airConditionerColdButtonClick(View view) {
+    public void airConditionerFreezeButtonClick(View view) {
         showDialog("Air conditioner cold button clicked");
         arduinoService.setAirConditionerCold(new Response.Listener<String>() {
             @Override

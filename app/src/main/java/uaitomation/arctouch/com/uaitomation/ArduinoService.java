@@ -16,21 +16,21 @@ import com.android.volley.toolbox.Volley;
 public class ArduinoService {
 
     public static ArduinoService INSTANCE;
-    private final RequestQueue requestQueue;
-    private Context context;
+    private RequestQueue requestQueue;
     private String serverAddress;
 
     public static ArduinoService instance(Context context, String serverAddress) {
         if (INSTANCE == null) {
-            INSTANCE = new ArduinoService();
+            INSTANCE = new ArduinoService(context);
         }
-        INSTANCE.context = context;
+
         INSTANCE.serverAddress = serverAddress;
+        INSTANCE.requestQueue = Volley.newRequestQueue(context);
         return INSTANCE;
     }
 
-    private ArduinoService() {
-        requestQueue = Volley.newRequestQueue(context);
+    private ArduinoService(Context context) {
+
     }
 
     public void setAirConditionerState (boolean on, Response.Listener<String> callback) {
